@@ -1,8 +1,9 @@
 
 
-from mongoengine import (Document, StringField)
-
 # define you post object
 
 
-# class Post(Document):
+class Post():
+    def __init__(self, title, content):
+        self.title = title
+        self.content = content
