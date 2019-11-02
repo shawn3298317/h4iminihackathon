@@ -1,13 +1,5 @@
-{% extends "layout.html" %} {% block content %}
-<form method="POST" action="http://0.0.0.0:4000/home">
-  <input type="text" name="title" />
-  <input type="text" name="content" />
-  <button type="submit">Tweet</button>
-</form>
+<!-- This file inherits from the layout file-->
 
-{% for post in posts %}
-<h3>{{ post.title }}</h3>
-<p>{{ post.content }}</p>
-{% endfor %}
-<!-- Added code here -->
+{% extends "layout.html" %} {% block content %}
+<!-- add your code here that replaces the code block in layout.html-->
 {% endblock content %}
