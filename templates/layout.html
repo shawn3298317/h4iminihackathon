@@ -13,7 +13,8 @@
     {%if title%}
     <title>{{title}}</title>
     {%else%}
-    <title>Happy website</title>
+
+    <title>Happy</title>
     {%endif%}
 </head>
 <body>
@@ -25,7 +26,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="/about">Login </a>
+                <a class="nav-item nav-link" href="/login">Login </a>
             </div>
         </nav>
     </nav> -->
@@ -42,7 +43,7 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="/login">Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#">Disabled</a>
@@ -63,8 +64,9 @@
     </nav>
 
 
-
     {% block content %}{% endblock %}
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
