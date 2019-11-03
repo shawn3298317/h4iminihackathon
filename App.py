@@ -28,24 +28,39 @@ def find_user_from_db(email, pw):
     print(user)
     return user
 
+def add_new_post_to_db(post_msg, user_name):
+    client = MongoClient(app.config["MONGO_URI"])
+    db = client.happy
+    posts = db.posts
+    posts.insert_one({"name": user_name, "post_msg": post_msg})
 
-@app.route('/')
+def get_posts_from_db(topk):
+    client = MongoClient(app.config["MONGO_URI"])
+    db = client.happy
+    posts = db.posts
+    ret_posts = posts.find({})
+    return ret_posts
+
+@app.route('/', methods=["GET", "POST", "PUT"])
 def home():
     # TODO: read from database
     # TODO: populate some posts in database
-    posts = [
-        {
-            'author':'Rahul Suresh',
-            'content':'First post content',
-            'date_posted':'April 20, 2018'
-        }, 
-        {
-            'author':'Akari',
-            'content':'I\'m glad you do',
-            'date_posted':'April 21, 2018'
-        }
-    ]
-    return render_template('home.html',title='Community speak', posts=posts)
+    posts = get_posts_from_db(topk=20)
+    user_name = "Anonymous"
+    if "messages" in request.args:
+        user_name = request.args["messages"]
+
+    # print("user_name", request.args["messages"])
+
+    form = request.form
+    error = None
+
+    if request.method == "POST":
+        
+        # TODO: Add publish date later...
+        add_new_post_to_db(form.get("new_post"), user_name)
+
+    return render_template('home.html',title='Community speak', posts=posts, user_name =user_name)
 
 # @app.route('/about')
 # def about():
@@ -65,7 +80,7 @@ def login():
         if msg is None:
             error = "Cannot find this user. Please try again."
         else:
-            return redirect(url_for('home', messages=msg))
+            return redirect(url_for('home', messages=msg["name"]))
     return render_template("login.html", error=error, form=form)
 
 @app.route("/signup", methods=["GET", "POST", "PUT"])
