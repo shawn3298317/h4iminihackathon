@@ -2,10 +2,18 @@
     text-align: center;
 } */
 
-body {
-    background: #000000;
-    color: #333333;
-    margin-top: 5rem;
+  body {
+    height: 100%;
+    /*background: #5848e9;*/
+    /*color: #8789f0;*/
+    font-family: Poppins-Regular, sans-serif;
+    background: #9053c7;
+    /*background-color: webkit-linear-gradient(-135deg, #c850c0, #4158d0);*/
+    background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: linear-gradient(-135deg, #c850c0, #4158d0);
+    /*linear-gradient(-135deg, #c850c0, #4158d0);*/
   }
   
   h1, h2, h3, h4, h5, h6 {
