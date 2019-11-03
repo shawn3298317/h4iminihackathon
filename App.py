@@ -38,5 +38,8 @@ def login():
 	return render_template("login.html")
 
 mongo = PyMongo(app)
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=4000, debug=True)
+# if __name__ == "__main__":
+#     app.run(host="0.0.0.0", port=4000, debug=True)
+
+if __name__ == '__main__':
+    app.run(debug=True)
