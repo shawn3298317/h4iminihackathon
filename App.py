@@ -1,24 +1,13 @@
 # # import modules
 
-# from flask import Flask, render_template, request
-# from flask_pymongo import PyMongo
-# # initialize database
+from flask import Flask, render_template, url_for, request
+from flask_pymongo import PyMongo
 
+# initializes app
 
-# # create your routes here
-
-# # initializes app
-
-# app = Flask(__name__)
-# app.config["MONGO_URI"] = "mongodb+srv://shawn:18740811@h4iminihack-73gfh.mongodb.net/test?retryWrites=true&w=majority"
-# #app.config["MONGO_URI"] = "mongodb://localhost:27017/socialMedia"
-
-# mongo = PyMongo(app)
-# if __name__ == "__main__":
-#     app.run(host="0.0.0.0", port=4000, debug=True)
-
-from flask import Flask, render_template, url_for
 app = Flask(__name__)
+# initialize database
+app.config["MONGO_URI"] = "mongodb+srv://shawn:18740811@h4iminihack-73gfh.mongodb.net/test?retryWrites=true&w=majority"
 
 posts = [
     {
@@ -33,6 +22,8 @@ posts = [
     }
 ]
 
+# create your routes here
+
 @app.route('/')
 def home():
     return render_template('home.html',title='Community speak', posts=posts)
@@ -41,5 +32,11 @@ def home():
 # def about():
 #     return render_template('community.html', title='Community speak', posts=posts)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route("/login", methods=["GET", "POST", "PUT"])
+def login():
+	"""Serve login page template."""
+	return render_template("login.html")
+
+mongo = PyMongo(app)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=4000, debug=True)
